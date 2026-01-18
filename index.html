@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <title>RWSG – A Sua Rádio Online</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <!-- PWA -->
+  <link rel="manifest" href="manifest.json">
+  <meta name="theme-color" content="#000000">
+
+  <style>
+    body {
+      margin: 0;
+      padding: 40px 20px;
+      font-family: Arial, sans-serif;
+      text-align: center;
+      background: #ffffff;
+    }
+    img {
+      max-width: 200px;
+    }
+    button {
+      font-size: 18px;
+      padding: 12px 20px;
+      margin-top: 20px;
+      cursor: pointer;
+    }
+    .status {
+      margin-top: 15px;
+      font-size: 16px;
+      font-weight: bold;
+    }
+  </style>
+</head>
+<body>
+
+  <img src="icon-512.png" alt="RWSG Logo">
+
+  <h2>RWSG – A Sua Rádio Online</h2>
+  <p style="color:red;font-weight:bold;">AO VIVO</p>
+
+  <audio id="radio" preload="none">
+    <source src="https://stm31.srvstm.com:6788/stream" type="audio/mpeg">
+  </audio>
+
+  <br>
+
+  <button onclick="playRadio()">▶️ Tocar Rádio</button>
+
+  <div class="status" id="status">Parado</div>
+
+  <script>
+    const radio = document.getElementById('radio');
+    const status = document.getElementById('status');
+
+    function playRadio() {
+      radio.play()
+        .then(() => {
+          status.innerHTML = 'Tocando RWSG 🟢';
+          status.style.color = 'green';
+        })
+        .catch(() => {
+          status.innerHTML = 'Erro ao conectar 🔴';
+          status.style.color = 'red';
+        });
+    }
+  </script>
+
+</body>
+</html>
